@@ -1641,6 +1641,13 @@ picomatch@^2.3.1:
   resolved "https://registry.yarnpkg.com/picomatch/-/picomatch-2.3.1.tgz#3ba3833733646d9d3e4995946c1365a67fb07a42"
   integrity sha512-JU3teHTNjmE2VCGFzuY8EXzCDVwEqB2a8fsIvwaStHhAWJEeVd1o1QD80CU6+ZdEXXSLbSsuLwJjkCBWqRQUVA==
 
+popn-db-js@^0.9.4:
+  version "0.9.4"
+  resolved "https://registry.yarnpkg.com/popn-db-js/-/popn-db-js-0.9.4.tgz#b4ac2a62cdb61d6792150cda5a23ed75b589e4ac"
+  integrity sha512-Mqft/UaG9ktfX0hf55BRVrk3Qp3qNVQREkrvWsyZbgBpKDO7Q59VhPLuvCXRTQUGOgoOWlZTmgQC9u8QUOkZ7A==
+  dependencies:
+    sql.js "^1.8.0"
+
 postcss@8.4.14:
   version "8.4.14"
   resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.4.14.tgz#ee9274d5622b4858c1007a74d76e42e56fd21caf"
@@ -1818,6 +1825,11 @@ source-map-js@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/source-map-js/-/source-map-js-1.0.2.tgz#adbc361d9c62df380125e7f161f71c826f1e490c"
   integrity sha512-R0XvVJ9WusLiqTCEiGCmICCMplcCkIwwR11mOSD9CR5u+IXYdiseeEuXCVAjS54zqwkLcPNnmU4OeJ6tUrWhDw==
+
+sql.js@^1.8.0:
+  version "1.8.0"
+  resolved "https://registry.yarnpkg.com/sql.js/-/sql.js-1.8.0.tgz#cb45d957e17a2239662fe2f614c9b678990867a6"
+  integrity sha512-3HD8pSkZL+5YvYUI8nlvNILs61ALqq34xgmF+BHpqxe68yZIJ1H+sIVIODvni25+CcxHUxDyrTJUL0lE/m7afw==
 
 stop-iteration-iterator@^1.0.0:
   version "1.0.0"

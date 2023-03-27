@@ -1,6 +1,14 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
+module.exports = {
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "popn-assets.surge.sh",
+        port: "",
+        pathname: "/kc_*.png",
+      },
+    ],
+  },
   reactStrictMode: true,
 }
-
-module.exports = nextConfig
