@@ -5,13 +5,12 @@ import { Database, Chart } from "popn-db-js"
 
 const urlFetcher = (url: string) => fetch(url).then((res) => res.json())
 
-function MyRating() {
+function SiteRatings() {
   const router = useRouter()
   const { sid } = router.query
   const url =
-    "https://backend.tunestreet.org/rating?" +
+    "https://backend.tunestreet.org/ratings/site?" +
     new URLSearchParams({
-      type: "quality",
       entity_type: "chart",
       entity_id: `${sid}ex`,
     })
@@ -20,9 +19,15 @@ function MyRating() {
   if (error) return <div>Failed to load</div>
   if (!data) return <div>Loading...</div>
 
-  const value = data.rating?.value
+  const { quality_rating, difficulty_rating } = data.site_entity_ratings
 
-  return <h2>Rating: {value ?? "none"}</h2>
+  return (
+    <div>
+      <h2>Site ratings:</h2>
+      <h3>Quality: {quality_rating ?? "n/a"}</h3>
+      <h3>Difficulty: {difficulty_rating ?? "n/a"}</h3>
+    </div>
+  )
 }
 
 function ChartPageHandler() {
@@ -54,7 +59,7 @@ function ChartPage(chart: Chart) {
       <h2>
         {difficulty} {level}
       </h2>
-      <MyRating />
+      <SiteRatings />
     </>
   )
 }
