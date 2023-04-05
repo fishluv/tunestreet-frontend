@@ -30,6 +30,31 @@ function SiteRatings() {
   )
 }
 
+function MyRatings() {
+  const router = useRouter()
+  const { sid } = router.query
+  const url =
+    "https://backend.tunestreet.org/ratings/mine?" +
+    new URLSearchParams({
+      entity_type: "chart",
+      entity_id: `${sid}ex`,
+    })
+  const { data, error } = useSWR(url, urlFetcher)
+
+  if (error) return <div>Failed to load</div>
+  if (!data) return <div>Loading...</div>
+
+  const { quality_rating, difficulty_rating } = data.user_entity_ratings
+
+  return (
+    <div>
+      <h2>My ratings:</h2>
+      <h3>Quality: {quality_rating ?? "n/a"}</h3>
+      <h3>Difficulty: {difficulty_rating ?? "n/a"}</h3>
+    </div>
+  )
+}
+
 function ChartPageHandler() {
   const router = useRouter()
   const { sid } = router.query
@@ -60,6 +85,7 @@ function ChartPage(chart: Chart) {
         {difficulty} {level}
       </h2>
       <SiteRatings />
+      <MyRatings />
     </>
   )
 }
