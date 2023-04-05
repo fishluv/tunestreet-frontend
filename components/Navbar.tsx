@@ -1,17 +1,16 @@
 import Link from "next/link"
-import { Inter } from "next/font/google"
-import styles from "./Navbar.module.css"
-
-const inter = Inter({ subsets: ["latin"] })
+import LoginOrMe from "./LoginOrMe"
+import styles from "./Navbar.module.scss"
 
 export default function Header() {
   return (
     <>
-      <div className={inter.className}>
-        <Link href="/">
-          <span className={styles.description}>TuneStreet</span>
+      <div className={styles.navbar}>
+        <Link className={styles.link} href="/">
+          <span className={styles.tune}>Tune</span>
+          <span className={styles.street}>Street</span>
         </Link>
-        <div className={styles.userInfo}>user info</div>
+        <LoginOrMe />
       </div>
     </>
   )

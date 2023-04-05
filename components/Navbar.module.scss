@@ -1,0 +1,23 @@
+$col-red: #E6375E;
+$col-orange: #EB6727;
+$col-blue: #2C8CD6;
+
+.navbar {
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.link {
+  font-family: Helvetica, sans-serif;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.tune {
+  color: $col-red;
+}
+
+.street {
+  color: $col-blue;
+}
