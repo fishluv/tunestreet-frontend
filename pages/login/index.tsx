@@ -25,7 +25,7 @@ export default function Login() {
     }
 
     setEmailSending(true)
-    fetch("http://localhost:3000/login/requests", {
+    fetch("https://backend.tunestreet.org/login/requests", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

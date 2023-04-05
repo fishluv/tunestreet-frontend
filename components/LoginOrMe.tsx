@@ -7,20 +7,23 @@ export default function LoginOrMe() {
   const router = useRouter()
   const auth = useAuth()
 
-  const { data } = useSWR("http://localhost:3000/users/me", async (url) => {
-    const res = await fetch(url, { credentials: "include" })
-    const data = await res.json()
-    const { user } = data
-    if (user) {
-      auth.onLogin(user)
-    } else {
-      auth.onLogout()
-    }
-    return data
-  })
+  const { data } = useSWR(
+    "https://backend.tunestreet.org/users/me",
+    async (url) => {
+      const res = await fetch(url, { credentials: "include" })
+      const data = await res.json()
+      const { user } = data
+      if (user) {
+        auth.onLogin(user)
+      } else {
+        auth.onLogout()
+      }
+      return data
+    },
+  )
 
   const onLogoutClick = () => {
-    fetch("http://localhost:3000/login/sessions", {
+    fetch("https://backend.tunestreet.org/login/sessions", {
       method: "DELETE",
       credentials: "include",
     }).then(() => {
