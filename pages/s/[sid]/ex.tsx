@@ -3,7 +3,8 @@ import Image from "next/image"
 import { useRouter } from "next/router"
 import { Database, Chart } from "popn-db-js"
 
-const urlFetcher = (url: string) => fetch(url).then((res) => res.json())
+const urlFetcher = (url: string) =>
+  fetch(url, { credentials: "include" }).then((res) => res.json())
 
 function SiteRatings() {
   const router = useRouter()
