@@ -1,0 +1,18 @@
+.StarHalf {
+  padding-left: 0.75rem;
+  border: 2px solid yellow;
+
+  &.filled {
+    background-color: yellow;
+  }
+
+  &.left:not(:first-child) {
+    margin-left: 0.25rem;
+  }
+}
+
+.QualityRater {
+  .value {
+    margin-left: 0.5rem;
+  }
+}

@@ -2,6 +2,9 @@ import useSWR from "swr"
 import Image from "next/image"
 import { useRouter } from "next/router"
 import { Database, Chart } from "popn-db-js"
+import StarBar from "@/components/StarBar"
+import { useState } from "react"
+import styles from "@/components/StarBar.module.scss"
 
 const urlFetcher = (url: string) =>
   fetch(url, { credentials: "include" }).then((res) => res.json())
@@ -20,7 +23,12 @@ function SiteRatings() {
   if (error) return <div>Failed to load</div>
   if (!data) return <div>Loading...</div>
 
-  const { quality_rating, difficulty_rating } = data.site_entity_ratings
+  const { site_entity_ratings, errors } = data
+  if (!site_entity_ratings) {
+    return <div>Failed to load {errors ?? errors}</div>
+  }
+
+  const { quality_rating, difficulty_rating } = site_entity_ratings
 
   return (
     <div>
@@ -45,13 +53,32 @@ function MyRatings() {
   if (error) return <div>Failed to load</div>
   if (!data) return <div>Loading...</div>
 
-  const { quality_rating, difficulty_rating } = data.user_entity_ratings
+  const { user_entity_ratings, errors } = data
+  if (!user_entity_ratings) {
+    return <div>Failed to load {errors ?? errors}</div>
+  }
+
+  const { quality_rating, difficulty_rating } = user_entity_ratings
 
   return (
     <div>
       <h2>My ratings:</h2>
       <h3>Quality: {quality_rating ?? "n/a"}</h3>
       <h3>Difficulty: {difficulty_rating ?? "n/a"}</h3>
+    </div>
+  )
+}
+
+function QualityRater() {
+  const [valueInHalves, setValueInHalves] = useState(0)
+
+  return (
+    <div className={styles.QualityRater}>
+      <StarBar
+        startValueInHalves={0}
+        onValueChange={(newValueInHalves) => setValueInHalves(newValueInHalves)}
+      />
+      <span className={styles.value}>{valueInHalves / 2}</span>
     </div>
   )
 }
@@ -75,6 +102,7 @@ function ChartPage(chart: Chart) {
       </h2>
       <SiteRatings />
       <MyRatings />
+      <QualityRater />
     </>
   )
 }
