@@ -56,18 +56,6 @@ function MyRatings() {
   )
 }
 
-function ChartPageHandler() {
-  const router = useRouter()
-  const { sid } = router.query
-  const [chart] = Database.findCharts(`${sid}ex`)
-
-  if (chart === null) {
-    return <p>Couldnt find {sid} ex</p>
-  } else {
-    return ChartPage(chart)
-  }
-}
-
 function ChartPage(chart: Chart) {
   const { title, difficulty, level, songId } = chart
   const paddedId = `000${songId}`.slice(-4)
@@ -91,4 +79,14 @@ function ChartPage(chart: Chart) {
   )
 }
 
-export default ChartPageHandler
+export default function ChartExPage() {
+  const router = useRouter()
+  const { sid } = router.query
+  const [chart] = Database.findCharts(`${sid}ex`)
+
+  if (chart === null) {
+    return <p>Couldnt find {sid} ex</p>
+  } else {
+    return ChartPage(chart)
+  }
+}
