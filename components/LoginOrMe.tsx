@@ -27,7 +27,6 @@ export default function LoginOrMe() {
       method: "DELETE",
       credentials: "include",
     }).then(() => {
-      // auth.onLogout()
       router.reload()
     })
   }
