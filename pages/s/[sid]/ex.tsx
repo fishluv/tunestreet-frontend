@@ -5,6 +5,7 @@ import { Database, Chart } from "popn-db-js"
 import StarBar from "@/components/StarBar"
 import { useState } from "react"
 import styles from "@/components/StarBar.module.scss"
+import getBackendUrl from "@/getBackendUrl"
 
 const urlFetcher = (url: string) =>
   fetch(url, { credentials: "include" }).then((res) => res.json())
@@ -12,12 +13,10 @@ const urlFetcher = (url: string) =>
 function SiteRatings() {
   const router = useRouter()
   const { sid } = router.query
-  const url =
-    "https://backend.tunestreet.org/ratings/site?" +
-    new URLSearchParams({
-      entity_type: "chart",
-      entity_id: `${sid}ex`,
-    })
+  const url = getBackendUrl(
+    "/ratings/site",
+    `?entity_type=chart&entity_id=${sid}ex`,
+  )
   const { data, error } = useSWR(url, urlFetcher)
 
   if (error) return <div>Failed to load</div>
@@ -42,12 +41,10 @@ function SiteRatings() {
 function MyRatings() {
   const router = useRouter()
   const { sid } = router.query
-  const url =
-    "https://backend.tunestreet.org/ratings/mine?" +
-    new URLSearchParams({
-      entity_type: "chart",
-      entity_id: `${sid}ex`,
-    })
+  const url = getBackendUrl(
+    "/ratings/mine",
+    `?entity_type=chart&entity_id=${sid}ex`,
+  )
   const { data, error } = useSWR(url, urlFetcher)
 
   if (error) return <div>Failed to load</div>

@@ -1,6 +1,7 @@
 import Head from "next/head"
 import styles from "@/styles/Home.module.css"
 import { ChangeEvent, KeyboardEvent, useState } from "react"
+import getBackendUrl from "@/getBackendUrl"
 
 export default function Login() {
   const [email, setEmail] = useState("")
@@ -25,7 +26,7 @@ export default function Login() {
     }
 
     setEmailSending(true)
-    fetch("https://backend.tunestreet.org/login/requests", {
+    fetch(getBackendUrl("/login/requests"), {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
