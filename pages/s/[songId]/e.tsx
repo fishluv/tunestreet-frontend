@@ -4,7 +4,7 @@ import { useRouter } from "next/router"
 export default function ChartExPage() {
   const router = useRouter()
   const { songId } = router.query
-  const chartId = `${songId}ex`
+  const chartId = `${songId}e`
 
   return ChartPage(chartId)
 }
