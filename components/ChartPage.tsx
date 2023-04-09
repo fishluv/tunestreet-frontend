@@ -83,7 +83,7 @@ function QualityRater() {
 export default function ChartPage(chartId: string) {
   const [chart] = Database.findCharts(chartId)
   if (chart === null) {
-    return <p>Couldnt find {chartId}</p>
+    return <p>Couldnt find chart {chartId}</p>
   }
 
   const { title, difficulty, level, songId } = chart
