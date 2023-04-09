@@ -12,10 +12,10 @@ const urlFetcher = (url: string) =>
 
 function SiteRatings() {
   const router = useRouter()
-  const { sid } = router.query
+  const { songId } = router.query
   const url = getBackendUrl(
     "/ratings/site",
-    `?entity_type=chart&entity_id=${sid}ex`,
+    `?entity_type=chart&entity_id=${songId}ex`,
   )
   const { data, error } = useSWR(url, urlFetcher)
 
@@ -40,10 +40,10 @@ function SiteRatings() {
 
 function MyRatings() {
   const router = useRouter()
-  const { sid } = router.query
+  const { songId } = router.query
   const url = getBackendUrl(
     "/ratings/mine",
-    `?entity_type=chart&entity_id=${sid}ex`,
+    `?entity_type=chart&entity_id=${songId}ex`,
   )
   const { data, error } = useSWR(url, urlFetcher)
 
@@ -106,11 +106,11 @@ function ChartPage(chart: Chart) {
 
 export default function ChartExPage() {
   const router = useRouter()
-  const { sid } = router.query
-  const [chart] = Database.findCharts(`${sid}ex`)
+  const { songId } = router.query
+  const [chart] = Database.findCharts(`${songId}ex`)
 
   if (chart === null) {
-    return <p>Couldnt find {sid} ex</p>
+    return <p>Couldnt find {songId} ex</p>
   } else {
     return ChartPage(chart)
   }

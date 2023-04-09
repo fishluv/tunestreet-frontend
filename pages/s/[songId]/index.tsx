@@ -4,11 +4,11 @@ import { Database, Chart } from "popn-db-js"
 
 const SongPageHandler = () => {
   const router = useRouter()
-  const { sid } = router.query
-  const [normalChart] = Database.findCharts(`${sid}n`)
+  const { songId } = router.query
+  const [normalChart] = Database.findCharts(`${songId}n`)
 
   if (normalChart === null) {
-    return <p>Couldnt find {sid}</p>
+    return <p>Couldnt find {songId}</p>
   } else {
     return SongPage(normalChart)
   }
