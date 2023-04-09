@@ -1,4 +1,4 @@
-import { EntityOptions } from "@/components/EntityRatings"
+import { EntityOptions } from "@/components/EntityOptions"
 import useSWR from "swr"
 import getBackendUrl from "./getBackendUrl"
 
