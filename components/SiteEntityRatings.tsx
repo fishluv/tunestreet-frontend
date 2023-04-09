@@ -21,7 +21,9 @@ export default function SiteEntityRatings({
     <div>
       <h2>Site ratings:</h2>
       <h3>Quality: {quality_rating ?? "n/a"}</h3>
-      <h3>Difficulty: {difficulty_rating ?? "n/a"}</h3>
+      {entityType === "chart" && (
+        <h3>Difficulty: {difficulty_rating ?? "n/a"}</h3>
+      )}
     </div>
   )
 }

@@ -48,7 +48,9 @@ function MyEntityRatings({ entityType, entityId }: EntityOptions) {
         Quality:{" "}
         {qualityInHalves === null ? "n/a" : (qualityInHalves * 0.5).toFixed(1)}
       </h3>
-      <h3>Difficulty: {difficulty_rating ?? "n/a"}</h3>
+      {entityType === "chart" && (
+        <h3>Difficulty: {difficulty_rating ?? "n/a"}</h3>
+      )}
       <QualityRatingInput
         startValueInHalves={qualityInHalves}
         onRatingChange={onQualityRatingChange}
