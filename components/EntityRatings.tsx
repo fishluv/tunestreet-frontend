@@ -1,9 +1,12 @@
 import StarBar from "@/components/StarBar"
 import { useState } from "react"
 import styles from "@/components/StarBar.module.scss"
-import getBackendUrl from "@/lib/getBackendUrl"
 import Link from "next/link"
-import { useFetch } from "@/lib/fetch"
+import {
+  saveMyEntityRating,
+  useMyEntityRatings,
+  useSiteEntityRatings,
+} from "@/lib/fetch"
 
 export interface EntityOptions {
   entityType: "song" | "chart"
@@ -11,11 +14,7 @@ export interface EntityOptions {
 }
 
 function SiteRatings({ entityType, entityId }: EntityOptions) {
-  const url = getBackendUrl(
-    "/ratings/site",
-    `?entity_type=${entityType}&entity_id=${entityId}`,
-  )
-  const { data, error } = useFetch(url)
+  const { data, error } = useSiteEntityRatings({ entityType, entityId })
 
   if (error?.data) return <div>Error loading site ratings {error.data}</div>
   if (!data) return <div>Loading...</div>
@@ -37,11 +36,7 @@ function SiteRatings({ entityType, entityId }: EntityOptions) {
 }
 
 function MyRatings({ entityType, entityId }: EntityOptions) {
-  const url = getBackendUrl(
-    "/ratings/mine",
-    `?entity_type=${entityType}&entity_id=${entityId}`,
-  )
-  const { data, error } = useFetch(url)
+  const { data, error } = useMyEntityRatings({ entityType, entityId })
 
   if (error?.status === 401) {
     return (
@@ -67,16 +62,11 @@ function MyRatings({ entityType, entityId }: EntityOptions) {
     : Math.floor(qualityFloat / 0.5)
 
   function onQualityRatingChange(newValueInHalves: number) {
-    const saveRatingUrl = getBackendUrl(
-      "/ratings/mine",
-      `?entity_type=${entityType}`,
-      `?entity_id=${entityId}`,
-      "?type=quality",
-      `?value=${newValueInHalves * 0.5}`,
-    )
-    fetch(saveRatingUrl, {
-      method: "PUT",
-      credentials: "include",
+    saveMyEntityRating({
+      entityType,
+      entityId,
+      type: "quality",
+      value: String(newValueInHalves * 0.5),
     })
   }
 
