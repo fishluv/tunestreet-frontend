@@ -83,26 +83,64 @@ function MyRatings({ entityType, entityId }: EntityOptions) {
 
   const { quality_rating, difficulty_rating } = user_entity_ratings
 
+  const qualityFloat = parseFloat(quality_rating)
+  const qualityInHalves = isNaN(qualityFloat)
+    ? null
+    : Math.floor(qualityFloat / 0.5)
+
+  function onQualityRatingChange(newValueInHalves: number) {
+    const saveRatingUrl = getBackendUrl(
+      "/ratings/mine",
+      `?entity_type=${entityType}`,
+      `?entity_id=${entityId}`,
+      "?type=quality",
+      `?value=${newValueInHalves * 0.5}`,
+    )
+    fetch(saveRatingUrl, {
+      method: "PUT",
+      credentials: "include",
+    })
+  }
+
   return (
     <div>
       <h2>My ratings:</h2>
-      <h3>Quality: {quality_rating ?? "n/a"}</h3>
+      <h3>
+        Quality:{" "}
+        {qualityInHalves === null ? "n/a" : (qualityInHalves * 0.5).toFixed(1)}
+      </h3>
       <h3>Difficulty: {difficulty_rating ?? "n/a"}</h3>
-      <QualityRater />
+      <QualityRatingInput
+        startValueInHalves={qualityInHalves}
+        onRatingChange={onQualityRatingChange}
+      />
     </div>
   )
 }
 
-function QualityRater() {
-  const [valueInHalves, setValueInHalves] = useState(0)
+function QualityRatingInput({
+  startValueInHalves,
+  onRatingChange,
+}: {
+  startValueInHalves: number | null
+  onRatingChange(newValueInHalves: number): void
+}) {
+  const [valueInHalves, setValueInHalves] = useState(startValueInHalves)
+
+  function onStarBarValueChange(newValueInHalves: number) {
+    onRatingChange(newValueInHalves)
+    setValueInHalves(newValueInHalves)
+  }
 
   return (
     <div className={styles.QualityRater}>
       <StarBar
-        startValueInHalves={0}
-        onValueChange={(newValueInHalves) => setValueInHalves(newValueInHalves)}
+        startValueInHalves={valueInHalves ?? 0}
+        onValueChange={onStarBarValueChange}
       />
-      <span className={styles.value}>{valueInHalves / 2}</span>
+      <span className={styles.value}>
+        {((valueInHalves ?? 0) * 0.5).toFixed(1)}
+      </span>
     </div>
   )
 }
