@@ -1,9 +1,18 @@
 import Image from "next/image"
+import Link from "next/link"
+import { useRouter } from "next/router"
 import { Database } from "popn-db-js"
 import EntityRatings from "./EntityRatings"
+import styles from "./SongPage.module.scss"
 
 export default function SongPage(songId: string) {
-  const [normalChart] = Database.findCharts(`${songId}n`)
+  const { asPath } = useRouter()
+  const [easyChart, normalChart, hyperChart, exChart] = Database.findCharts(
+    `${songId}e`,
+    `${songId}n`,
+    `${songId}h`,
+    `${songId}ex`,
+  )
   if (normalChart === null) {
     return <p>Couldnt find song {songId}</p>
   }
@@ -22,6 +31,29 @@ export default function SongPage(songId: string) {
       />
       <h1>{title}</h1>
       <EntityRatings entityType="song" entityId={songId} />
+      <h2>Charts</h2>
+      <p>
+        {easyChart && (
+          <Link href={`${asPath}/e`} className={styles.chartLink}>
+            e {easyChart.level}
+          </Link>
+        )}
+        {normalChart && (
+          <Link href={`${asPath}/n`} className={styles.chartLink}>
+            n {normalChart.level}
+          </Link>
+        )}
+        {hyperChart && (
+          <Link href={`${asPath}/h`} className={styles.chartLink}>
+            h {hyperChart.level}
+          </Link>
+        )}
+        {exChart && (
+          <Link href={`${asPath}/ex`} className={styles.chartLink}>
+            ex {exChart.level}
+          </Link>
+        )}
+      </p>
     </>
   )
 }

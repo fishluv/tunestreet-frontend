@@ -1,4 +1,5 @@
 import Image from "next/image"
+import Link from "next/link"
 import { Database } from "popn-db-js"
 import EntityRatings from "./EntityRatings"
 
@@ -14,6 +15,9 @@ export default function ChartPage(chartId: string) {
 
   return (
     <>
+      <p>
+        <Link href={`/s/${chart.songId}`}>&lt;&lt; Back to song page</Link>
+      </p>
       <Image
         src={bannerUrl}
         alt={`banner for ${title}`}
