@@ -1,5 +1,6 @@
 import Image from "next/image"
 import { Database } from "popn-db-js"
+import EntityRatings from "./EntityRatings"
 
 export default function SongPage(songId: string) {
   const [normalChart] = Database.findCharts(`${songId}n`)
@@ -20,6 +21,7 @@ export default function SongPage(songId: string) {
         height={44}
       />
       <h1>{title}</h1>
+      <EntityRatings entityType="song" entityId={songId} />
     </>
   )
 }
