@@ -6,7 +6,7 @@ import { saveMyEntityRating, useMyEntityRatings } from "@/lib/fetch"
 import { EntityOptions } from "./EntityOptions"
 
 function MyEntityRatings({ entityType, entityId }: EntityOptions) {
-  const { data, error } = useMyEntityRatings({ entityType, entityId })
+  const { data, error, mutate } = useMyEntityRatings({ entityType, entityId })
 
   if (error?.status === 401) {
     return (
@@ -31,13 +31,14 @@ function MyEntityRatings({ entityType, entityId }: EntityOptions) {
     ? null
     : Math.floor(qualityFloat / 0.5)
 
-  function onQualityRatingChange(newValueInHalves: number) {
-    saveMyEntityRating({
+  async function onQualityRatingChange(newValueInHalves: number) {
+    await saveMyEntityRating({
       entityType,
       entityId,
       type: "quality",
       value: String(newValueInHalves * 0.5),
     })
+    mutate()
   }
 
   return (
