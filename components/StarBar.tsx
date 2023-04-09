@@ -40,7 +40,9 @@ export default function StarBar({
         onValueChange(i)
       }
 
-      stars.push(<StarHalf side={side} isFilled={isFilled} onClick={onClick} />)
+      stars.push(
+        <StarHalf side={side} isFilled={isFilled} onClick={onClick} key={i} />,
+      )
     }
 
     return stars
