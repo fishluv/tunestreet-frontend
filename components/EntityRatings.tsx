@@ -1,35 +1,13 @@
-import useSWR from "swr"
 import StarBar from "@/components/StarBar"
 import { useState } from "react"
 import styles from "@/components/StarBar.module.scss"
 import getBackendUrl from "@/lib/getBackendUrl"
 import Link from "next/link"
+import { useFetch } from "@/lib/fetch"
 
 export interface EntityOptions {
   entityType: "song" | "chart"
   entityId: string
-}
-
-class HttpError extends Error {
-  data: any
-  status: number
-
-  constructor(data: any, status: number) {
-    super("Error")
-    this.data = data
-    this.status = status
-  }
-}
-
-const urlFetcher = async (url: string) => {
-  const res = await fetch(url, { credentials: "include" })
-
-  if (!res.ok) {
-    const data = await res.json()
-    throw new HttpError(data, res.status)
-  }
-
-  return res.json()
 }
 
 function SiteRatings({ entityType, entityId }: EntityOptions) {
@@ -37,7 +15,7 @@ function SiteRatings({ entityType, entityId }: EntityOptions) {
     "/ratings/site",
     `?entity_type=${entityType}&entity_id=${entityId}`,
   )
-  const { data, error } = useSWR(url, urlFetcher)
+  const { data, error } = useFetch(url)
 
   if (error?.data) return <div>Error loading site ratings {error.data}</div>
   if (!data) return <div>Loading...</div>
@@ -63,7 +41,7 @@ function MyRatings({ entityType, entityId }: EntityOptions) {
     "/ratings/mine",
     `?entity_type=${entityType}&entity_id=${entityId}`,
   )
-  const { data, error } = useSWR(url, urlFetcher)
+  const { data, error } = useFetch(url)
 
   if (error?.status === 401) {
     return (
