@@ -2,7 +2,7 @@ import useSWR from "swr"
 import StarBar from "@/components/StarBar"
 import { useState } from "react"
 import styles from "@/components/StarBar.module.scss"
-import getBackendUrl from "@/getBackendUrl"
+import getBackendUrl from "@/lib/getBackendUrl"
 import Link from "next/link"
 
 export interface EntityOptions {
