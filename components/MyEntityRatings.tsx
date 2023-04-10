@@ -4,6 +4,8 @@ import styles from "@/components/StarBar.module.scss"
 import Link from "next/link"
 import { saveMyEntityRating, useMyEntityRatings } from "@/lib/fetch"
 import { EntityOptions } from "./EntityOptions"
+import { mutate as mutateGlobal } from "swr"
+import { getSiteEntityRatingsUrl } from "@/lib/backendUrls"
 
 function MyEntityRatings({ entityType, entityId }: EntityOptions) {
   const { data, error, mutate } = useMyEntityRatings({ entityType, entityId })
@@ -39,6 +41,7 @@ function MyEntityRatings({ entityType, entityId }: EntityOptions) {
       value: String(newValueInHalves * 0.5),
     })
     mutate()
+    mutateGlobal(getSiteEntityRatingsUrl({ entityType, entityId }))
   }
 
   return (

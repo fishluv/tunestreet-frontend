@@ -1,6 +1,6 @@
 import { EntityOptions } from "@/components/EntityOptions"
 import useSWR from "swr"
-import getBackendUrl from "./getBackendUrl"
+import { getBackendUrl, getSiteEntityRatingsUrl } from "./backendUrls"
 
 class HttpError extends Error {
   data: any
@@ -28,12 +28,8 @@ async function urlFetcher(url: string) {
   return handleResponse(res)
 }
 
-export function useSiteEntityRatings({ entityType, entityId }: EntityOptions) {
-  const url = getBackendUrl(
-    "/ratings/site",
-    `?entity_type=${entityType}&entity_id=${entityId}`,
-  )
-  return useSWR(url, urlFetcher)
+export function useSiteEntityRatings(entityOptions: EntityOptions) {
+  return useSWR(getSiteEntityRatingsUrl(entityOptions), urlFetcher)
 }
 
 export function useMyEntityRatings({ entityType, entityId }: EntityOptions) {

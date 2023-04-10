@@ -2,7 +2,7 @@ import useSWR from "swr"
 import Link from "next/link"
 import { useRouter } from "next/router"
 import { useAuth } from "./authentication"
-import getBackendUrl from "@/lib/backendUrls"
+import { getBackendUrl } from "@/lib/backendUrls"
 
 export default function LoginOrMe() {
   const router = useRouter()
