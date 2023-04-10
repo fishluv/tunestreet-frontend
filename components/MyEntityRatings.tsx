@@ -8,7 +8,10 @@ import { mutate as mutateGlobal } from "swr"
 import { getSiteEntityRatingsUrl } from "@/lib/backendUrls"
 
 function MyEntityRatings({ entityType, entityId }: EntityOptions) {
-  const { data, error, mutate } = useMyEntityRatings({ entityType, entityId })
+  const { data, error, isLoading, mutate } = useMyEntityRatings({
+    entityType,
+    entityId,
+  })
 
   if (error?.status === 401) {
     return (
@@ -18,8 +21,13 @@ function MyEntityRatings({ entityType, entityId }: EntityOptions) {
     )
   }
 
-  if (error?.data) return <div>Error loading your ratings {error.data}</div>
-  if (!data) return <div>Loading...</div>
+  if (error) {
+    console.error(`Error loading your ratings: ${JSON.stringify(error.data)}`)
+    return <div>Error loading your ratings</div>
+  }
+  if (isLoading) {
+    return <div>Loading...</div>
+  }
 
   const { user_entity_ratings } = data
   if (!user_entity_ratings) {

@@ -5,10 +5,18 @@ export default function SiteEntityRatings({
   entityType,
   entityId,
 }: EntityOptions) {
-  const { data, error } = useSiteEntityRatings({ entityType, entityId })
+  const { data, error, isLoading } = useSiteEntityRatings({
+    entityType,
+    entityId,
+  })
 
-  if (error?.data) return <div>Error loading site ratings {error.data}</div>
-  if (!data) return <div>Loading...</div>
+  if (error) {
+    console.error(`Error loading site ratings: ${JSON.stringify(error.data)}`)
+    return <div>Error loading site ratings</div>
+  }
+  if (isLoading) {
+    return <div>Loading...</div>
+  }
 
   const { site_entity_ratings } = data
   if (!site_entity_ratings) {
