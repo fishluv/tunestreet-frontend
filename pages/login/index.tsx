@@ -1,7 +1,7 @@
 import Head from "next/head"
 import styles from "@/styles/Home.module.css"
 import { ChangeEvent, KeyboardEvent, useState } from "react"
-import getBackendUrl from "@/lib/getBackendUrl"
+import getBackendUrl from "@/lib/backendUrls"
 
 export default function Login() {
   const [email, setEmail] = useState("")
