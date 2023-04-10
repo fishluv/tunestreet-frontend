@@ -2,13 +2,13 @@ import StarBar from "@/components/StarBar"
 import { useState } from "react"
 import styles from "@/components/StarBar.module.scss"
 import Link from "next/link"
-import { saveMyEntityRating, useMyEntityRatings } from "@/lib/fetch"
+import { saveMyEntityRating, useFetchMyEntityRatings } from "@/lib/fetch"
 import { EntityOptions } from "./EntityOptions"
 import { mutate as mutateGlobal } from "swr"
 import { getSiteEntityRatingsUrl } from "@/lib/backendUrls"
 
 function MyEntityRatings({ entityType, entityId }: EntityOptions) {
-  const { data, error, isLoading, mutate } = useMyEntityRatings({
+  const { data, error, isLoading, mutate } = useFetchMyEntityRatings({
     entityType,
     entityId,
   })

@@ -47,11 +47,14 @@ export function useFetchLoginState() {
   return useSWR(getBackendUrl("/users/me"), fetcher)
 }
 
-export function useSiteEntityRatings(entityOptions: EntityOptions) {
+export function useFetchSiteEntityRatings(entityOptions: EntityOptions) {
   return useSWR(getSiteEntityRatingsUrl(entityOptions), urlFetcher)
 }
 
-export function useMyEntityRatings({ entityType, entityId }: EntityOptions) {
+export function useFetchMyEntityRatings({
+  entityType,
+  entityId,
+}: EntityOptions) {
   const url = getBackendUrl(
     "/ratings/mine",
     `?entity_type=${entityType}&entity_id=${entityId}`,

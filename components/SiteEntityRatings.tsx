@@ -1,11 +1,11 @@
-import { useSiteEntityRatings } from "@/lib/fetch"
+import { useFetchSiteEntityRatings } from "@/lib/fetch"
 import { EntityOptions } from "./EntityOptions"
 
 export default function SiteEntityRatings({
   entityType,
   entityId,
 }: EntityOptions) {
-  const { data, error, isLoading } = useSiteEntityRatings({
+  const { data, error, isLoading } = useFetchSiteEntityRatings({
     entityType,
     entityId,
   })
