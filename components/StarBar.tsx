@@ -1,16 +1,14 @@
-import { ReactNode, useState } from "react"
-import clsx from "clsx"
-import styles from "./StarBar.module.scss"
+import { MouseEvent } from "react"
 import starSprite from "@/assets/star_sprite.png" // Stolen from Rate Your Music.
 
-function StarImageBar({
+export default function StarBar({
   sizeMultiplier,
   valueInHalves,
-  setValueInHalves,
+  onChange,
 }: {
   sizeMultiplier: number
   valueInHalves: number
-  setValueInHalves(valueInHalves: number): void
+  onChange(newValueInHalves: number): void
 }) {
   const widthPx = 90 * sizeMultiplier
   const heightPx = 16 * sizeMultiplier
@@ -34,63 +32,12 @@ function StarImageBar({
     backgroundPositionY: `${bgPosYPx}px`,
     backgroundSize: "cover",
   }
-  return <div style={styleObj}></div>
-}
 
-function StarHalf({
-  side,
-  isFilled,
-  onClick,
-}: {
-  side: "left" | "right"
-  isFilled: boolean
-  onClick(): void
-}) {
-  const className = clsx(
-    styles.StarHalf,
-    styles[side],
-    isFilled && styles.filled,
-  )
-
-  return <span className={className} onClick={onClick}></span>
-}
-
-export default function StarBar({
-  startValueInHalves,
-  onValueChange,
-}: {
-  startValueInHalves: number
-  onValueChange(newValueInHalves: number): void
-}) {
-  const [valueInHalves, setValueInHalves] = useState<number>(startValueInHalves)
-
-  function prepareStars(): ReactNode {
-    const stars = []
-
-    for (let i = 1; i <= 10; i++) {
-      const side = i % 2 == 1 ? "left" : "right"
-      const isFilled = i <= valueInHalves
-      const onClick = () => {
-        setValueInHalves(i)
-        onValueChange(i)
-      }
-
-      stars.push(
-        <StarHalf side={side} isFilled={isFilled} onClick={onClick} key={i} />,
-      )
-    }
-
-    return stars
+  function onClick(e: MouseEvent<HTMLDivElement>) {
+    const x = e.nativeEvent.offsetX
+    const xInHalves = Math.ceil((x / widthPx) * 10)
+    onChange(xInHalves)
   }
 
-  return (
-    <span>
-      {prepareStars()}
-      <StarImageBar
-        sizeMultiplier={1.5}
-        valueInHalves={valueInHalves}
-        setValueInHalves={setValueInHalves}
-      />
-    </span>
-  )
+  return <div style={styleObj} onClick={onClick}></div>
 }

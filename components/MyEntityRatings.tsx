@@ -41,7 +41,7 @@ function MyEntityRatings({ entityType, entityId }: EntityOptions) {
     ? null
     : Math.floor(qualityFloat / 0.5)
 
-  async function onQualityRatingChange(newValueInHalves: number) {
+  async function saveQualityRatingAndSync(newValueInHalves: number) {
     await saveMyEntityRating({
       entityType,
       entityId,
@@ -64,7 +64,7 @@ function MyEntityRatings({ entityType, entityId }: EntityOptions) {
       )}
       <QualityRatingInput
         startValueInHalves={qualityInHalves}
-        onRatingChange={onQualityRatingChange}
+        onChange={saveQualityRatingAndSync}
       />
     </div>
   )
@@ -72,27 +72,25 @@ function MyEntityRatings({ entityType, entityId }: EntityOptions) {
 
 function QualityRatingInput({
   startValueInHalves,
-  onRatingChange,
+  onChange,
 }: {
   startValueInHalves: number | null
-  onRatingChange(newValueInHalves: number): void
+  onChange(newValueInHalves: number): void
 }) {
   const [valueInHalves, setValueInHalves] = useState(startValueInHalves)
 
-  function onStarBarValueChange(newValueInHalves: number) {
-    onRatingChange(newValueInHalves)
+  function callChangeHandlerAndUpdate(newValueInHalves: number) {
+    onChange(newValueInHalves)
     setValueInHalves(newValueInHalves)
   }
 
   return (
     <div className={styles.QualityRater}>
       <StarBar
-        startValueInHalves={valueInHalves ?? 0}
-        onValueChange={onStarBarValueChange}
+        sizeMultiplier={2}
+        valueInHalves={valueInHalves ?? 0}
+        onChange={callChangeHandlerAndUpdate}
       />
-      <span className={styles.value}>
-        {((valueInHalves ?? 0) * 0.5).toFixed(1)}
-      </span>
     </div>
   )
 }
