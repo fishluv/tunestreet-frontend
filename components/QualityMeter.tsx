@@ -1,7 +1,7 @@
 import { MouseEvent } from "react"
 import starSprite from "@/assets/star_sprite.png" // Stolen from Rate Your Music.
 
-export default function StarBar({
+export default function QualityMeter({
   sizeMultiplier,
   valueInHalves,
   onChange,

@@ -1,4 +1,4 @@
-import StarBar from "@/components/StarBar"
+import QualityMeter from "@/components/QualityMeter"
 import { useState } from "react"
 import styles from "@/components/StarBar.module.scss"
 
@@ -18,7 +18,7 @@ export default function QualityRatingInput({
 
   return (
     <div className={styles.QualityRater}>
-      <StarBar
+      <QualityMeter
         sizeMultiplier={2}
         valueInHalves={valueInHalves}
         onChange={callChangeHandlerAndUpdate}
