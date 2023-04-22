@@ -7,7 +7,7 @@ export default function StarBar({
   onChange,
 }: {
   sizeMultiplier: number
-  valueInHalves: number
+  valueInHalves: number | null
   onChange(newValueInHalves: number): void
 }) {
   const widthPx = 90 * sizeMultiplier
@@ -15,7 +15,7 @@ export default function StarBar({
   const spriteDistancePx = 66 * sizeMultiplier
 
   let spriteIndex
-  if (valueInHalves === 0) {
+  if (valueInHalves === null) {
     spriteIndex = 0
   } else if (valueInHalves === 10) {
     spriteIndex = 1

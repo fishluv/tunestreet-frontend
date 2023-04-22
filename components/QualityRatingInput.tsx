@@ -20,7 +20,7 @@ export default function QualityRatingInput({
     <div className={styles.QualityRater}>
       <StarBar
         sizeMultiplier={2}
-        valueInHalves={valueInHalves ?? 0}
+        valueInHalves={valueInHalves}
         onChange={callChangeHandlerAndUpdate}
       />
     </div>

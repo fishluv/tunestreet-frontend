@@ -18,7 +18,7 @@ export default function DifficultyRatingInput({
   return (
     <div>
       <DifficultyMeter
-        valueInQuarters={valueInQuarters ?? 0}
+        valueInQuarters={valueInQuarters}
         onChange={callChangeHandlerAndUpdate}
       />
     </div>

@@ -2,7 +2,7 @@ export default function DifficultyMeter({
   valueInQuarters,
   onChange,
 }: {
-  valueInQuarters: number
+  valueInQuarters: number | null
   onChange(newValueInQuarters: number): void
 }) {
   function prepareCircles() {
@@ -24,7 +24,9 @@ export default function DifficultyMeter({
       }
 
       let char
-      if (i == 0) {
+      if (valueInQuarters === null) {
+        char = "o"
+      } else if (i == 0) {
         char = "x"
       } else if (i < 0) {
         char = i >= valueInQuarters ? "x" : "o"
