@@ -1,11 +1,9 @@
-import StarBar from "@/components/StarBar"
-import { useState } from "react"
-import styles from "@/components/StarBar.module.scss"
 import Link from "next/link"
 import { saveMyEntityRating, useFetchMyEntityRatings } from "@/lib/fetch"
 import { EntityOptions } from "./EntityOptions"
 import { mutate as mutateGlobal } from "swr"
 import { getSiteEntityRatingsUrl } from "@/lib/backendUrls"
+import QualityRatingInput from "./QualityRatingInput"
 
 function MyEntityRatings({ entityType, entityId }: EntityOptions) {
   const { data, error, isLoading, mutate } = useFetchMyEntityRatings({
@@ -65,31 +63,6 @@ function MyEntityRatings({ entityType, entityId }: EntityOptions) {
       <QualityRatingInput
         startValueInHalves={qualityInHalves}
         onChange={saveQualityRatingAndSync}
-      />
-    </div>
-  )
-}
-
-function QualityRatingInput({
-  startValueInHalves,
-  onChange,
-}: {
-  startValueInHalves: number | null
-  onChange(newValueInHalves: number): void
-}) {
-  const [valueInHalves, setValueInHalves] = useState(startValueInHalves)
-
-  function callChangeHandlerAndUpdate(newValueInHalves: number) {
-    onChange(newValueInHalves)
-    setValueInHalves(newValueInHalves)
-  }
-
-  return (
-    <div className={styles.QualityRater}>
-      <StarBar
-        sizeMultiplier={2}
-        valueInHalves={valueInHalves ?? 0}
-        onChange={callChangeHandlerAndUpdate}
       />
     </div>
   )
