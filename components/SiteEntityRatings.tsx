@@ -1,3 +1,4 @@
+import { getDifficultyRatingDisplayString } from "@/lib/difficulty"
 import { useFetchSiteEntityRatings } from "@/lib/fetch"
 import { EntityOptions } from "./EntityOptions"
 
@@ -27,10 +28,14 @@ export default function SiteEntityRatings({
 
   return (
     <div>
-      <h2>Site ratings:</h2>
-      <h3>Quality: {quality_rating ?? "n/a"}</h3>
+      <h3>
+        Site rating: {quality_rating ? `${quality_rating} / 5.0` : "Unrated"}
+      </h3>
       {entityType === "chart" && (
-        <h3>Difficulty: {difficulty_rating ?? "n/a"}</h3>
+        <h3>
+          Site difficulty rating:{" "}
+          {getDifficultyRatingDisplayString(difficulty_rating)}
+        </h3>
       )}
     </div>
   )

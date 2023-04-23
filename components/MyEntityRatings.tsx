@@ -67,45 +67,40 @@ function MyEntityRatings({ entityType, entityId }: EntityOptions) {
     mutateGlobal(getSiteEntityRatingsUrl({ entityType, entityId }))
   }
 
-  function difficultyToDescription(difficultyFloat: number) {
-    switch (difficultyFloat) {
-      case -1.25:
-        return "Should be the next level down"
+  function getDifficultyLabel(difficultyInQuarters: number | null) {
+    switch (difficultyInQuarters) {
+      case null:
+        return "Unrated"
+      case -5:
+        return "Overleveled"
+      case -4:
+        return "Bottom"
+      case -3:
+        return "Very low"
+      case -2:
+        return "Low"
       case -1:
-        return "Among the easiest"
-      case -0.75:
-        return "Very easy"
-      case -0.5:
-        return "Moderately easy"
-      case -0.25:
-        return "Slightly easy"
+        return "Mid low"
       case 0:
-        return "Right in the middle"
-      case 0.25:
-        return "Slightly hard"
-      case 0.5:
-        return "Moderately hard"
-      case 0.75:
-        return "Very hard"
+        return "Mid"
       case 1:
-        return "Among the hardest"
-      case 1.25:
-        return "Should be the next level up"
+        return "Mid high"
+      case 2:
+        return "High"
+      case 3:
+        return "Very high"
+      case 4:
+        return "Top"
+      case 5:
+        return "Underleveled"
       default:
-        return "n/a"
+        return ""
     }
   }
 
   return (
     <div>
       <h2>My ratings:</h2>
-      <h3>
-        Quality:{" "}
-        {qualityInHalves === null ? "n/a" : (qualityInHalves * 0.5).toFixed(1)}
-      </h3>
-      {entityType === "chart" && (
-        <h3>Difficulty: {difficultyToDescription(difficultyFloat)}</h3>
-      )}
       <QualityRatingInput
         startValueInHalves={qualityInHalves}
         onChange={saveQualityRatingAndSync}
@@ -114,6 +109,7 @@ function MyEntityRatings({ entityType, entityId }: EntityOptions) {
         startValueInQuarters={difficultyInQuarters}
         onChange={saveDifficultyRatingAndSync}
       />
+      <span>{getDifficultyLabel(difficultyInQuarters)}</span>
     </div>
   )
 }
