@@ -1,0 +1,9 @@
+@import "../styles/colors";
+@import "../styles/pill";
+
+.DiffLevelPill {
+  @include pill;
+  @include diff-bg-colors(bright);
+  @include diff-border-colors(dark);
+  color: white;
+}

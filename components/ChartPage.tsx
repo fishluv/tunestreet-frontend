@@ -1,6 +1,7 @@
 import Image from "next/image"
 import Link from "next/link"
 import { Database } from "popn-db-js"
+import DiffLevelPill from "./DiffLevelPill"
 import EntityRatings from "./EntityRatings"
 
 export default function ChartPage(chartId: string) {
@@ -26,7 +27,7 @@ export default function ChartPage(chartId: string) {
       />
       <h1>{title}</h1>
       <h2>
-        {difficulty} {level}
+        <DiffLevelPill difficulty={difficulty} level={level} />{" "}
       </h2>
       <EntityRatings entityType="chart" entityId={chartId} />
     </>

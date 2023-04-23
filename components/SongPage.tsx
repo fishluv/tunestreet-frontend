@@ -2,6 +2,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { useRouter } from "next/router"
 import { Database } from "popn-db-js"
+import DiffLevelPill from "./DiffLevelPill"
 import EntityRatings from "./EntityRatings"
 import styles from "./SongPage.module.scss"
 
@@ -35,22 +36,22 @@ export default function SongPage(songId: string) {
       <p>
         {easyChart && (
           <Link href={`${asPath}/e`} className={styles.chartLink}>
-            e {easyChart.level}
+            <DiffLevelPill difficulty="e" level={easyChart.level} />
           </Link>
         )}
         {normalChart && (
           <Link href={`${asPath}/n`} className={styles.chartLink}>
-            n {normalChart.level}
+            <DiffLevelPill difficulty="n" level={normalChart.level} />
           </Link>
         )}
         {hyperChart && (
           <Link href={`${asPath}/h`} className={styles.chartLink}>
-            h {hyperChart.level}
+            <DiffLevelPill difficulty="h" level={hyperChart.level} />
           </Link>
         )}
         {exChart && (
           <Link href={`${asPath}/ex`} className={styles.chartLink}>
-            ex {exChart.level}
+            <DiffLevelPill difficulty="ex" level={exChart.level} />
           </Link>
         )}
       </p>
