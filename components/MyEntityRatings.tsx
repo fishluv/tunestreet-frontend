@@ -105,11 +105,15 @@ function MyEntityRatings({ entityType, entityId }: EntityOptions) {
         startValueInHalves={qualityInHalves}
         onChange={saveQualityRatingAndSync}
       />
-      <DifficultyRatingInput
-        startValueInQuarters={difficultyInQuarters}
-        onChange={saveDifficultyRatingAndSync}
-      />
-      <span>{getDifficultyLabel(difficultyInQuarters)}</span>
+      {entityType === "chart" && (
+        <>
+          <DifficultyRatingInput
+            startValueInQuarters={difficultyInQuarters}
+            onChange={saveDifficultyRatingAndSync}
+          />
+          <span>{getDifficultyLabel(difficultyInQuarters)}</span>
+        </>
+      )}
     </div>
   )
 }
