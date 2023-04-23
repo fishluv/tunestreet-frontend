@@ -24,17 +24,29 @@ export default function SiteEntityRatings({
     return <div>Couldnt find site ratings data</div>
   }
 
-  const { quality_rating, difficulty_rating } = site_entity_ratings
+  const {
+    quality_rating,
+    quality_rating_count,
+    difficulty_rating,
+    difficulty_rating_count,
+  } = site_entity_ratings
 
   return (
     <div>
       <h3>
-        Site rating: {quality_rating ? `${quality_rating} / 5.0` : "Unrated"}
+        Site rating:{" "}
+        {quality_rating && quality_rating_count
+          ? `${quality_rating} / 5.0 from ${quality_rating_count} ratings`
+          : "No ratings"}
       </h3>
       {entityType === "chart" && (
         <h3>
           Site difficulty rating:{" "}
-          {getDifficultyRatingDisplayString(difficulty_rating)}
+          {difficulty_rating && difficulty_rating_count
+            ? `${getDifficultyRatingDisplayString(
+                difficulty_rating,
+              )} from ${difficulty_rating_count} ratings`
+            : "No ratings"}
         </h3>
       )}
     </div>
