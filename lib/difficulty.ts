@@ -44,5 +44,5 @@ export function getDifficultyRatingDisplayString(
     diffFmt = `+${diffFloat.toFixed(2)}`
   }
 
-  return `${diffLabel} ${diffFmt}`
+  return `${diffFmt} (${diffLabel})`
 }
