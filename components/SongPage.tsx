@@ -5,6 +5,7 @@ import { Database } from "popn-db-js"
 import DiffLevelPill from "./DiffLevelPill"
 import EntityRatings from "./EntityRatings"
 import styles from "./SongPage.module.scss"
+import FolderPill from "./FolderPill"
 
 export default function SongPage(songId: string) {
   const { asPath } = useRouter()
@@ -29,6 +30,11 @@ export default function SongPage(songId: string) {
         alt={`banner for ${title}`}
         width={160}
         height={44}
+      />
+      <FolderPill
+        songFolder={normalChart.songFolder}
+        style="normal"
+        isLink={true}
       />
       <h1>{title}</h1>
       <EntityRatings entityType="song" entityId={songId} />

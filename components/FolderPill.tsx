@@ -3,6 +3,7 @@ import { M_PLUS_1 } from "next/font/google"
 import { VersionFolder } from "popn-db-js"
 import React from "react"
 import styles from "./FolderPill.module.scss"
+import Link from "next/link"
 
 const mplus1 = M_PLUS_1({
   weight: ["700"],
@@ -15,6 +16,7 @@ interface FolderPillProps {
   extraClass?: string
   songFolder: VersionFolder
   style: FolderPillStyle
+  isLink?: boolean
 }
 
 /**
@@ -100,7 +102,7 @@ export default class FolderPill extends React.Component<FolderPillProps> {
   }
 
   render() {
-    const { extraClass, songFolder, style } = this.props
+    const { extraClass, songFolder, style, isLink } = this.props
 
     const folderClass = /^\d/.test(songFolder) ? `ac${songFolder}` : songFolder
     const rootClassName = clsx(
@@ -113,6 +115,14 @@ export default class FolderPill extends React.Component<FolderPillProps> {
       mplus1.className,
     )
 
-    return <span className={rootClassName}>{this.getFolderDisplayName()}</span>
+    const pill = (
+      <span className={rootClassName}>{this.getFolderDisplayName()}</span>
+    )
+
+    if (isLink) {
+      return <Link href={`/v/${songFolder}`}>{pill}</Link>
+    } else {
+      return pill
+    }
   }
 }

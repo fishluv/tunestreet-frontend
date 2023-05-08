@@ -20,6 +20,9 @@ export default function VersionPage(version: string) {
 
   return (
     <>
+      <p>
+        <Link href="/v">&lt;&lt; Back to all versions</Link>
+      </p>
       <table>
         <thead>
           <th>song</th>
