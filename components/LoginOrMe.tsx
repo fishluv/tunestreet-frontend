@@ -28,7 +28,9 @@ export default function LoginOrMe() {
   } else if (username || email) {
     return (
       <div>
-        <p>{username || email}</p>
+        <p>
+          <Link href="/me">{username || email}</Link>
+        </p>
         <Link href="#" onClick={onLogoutClick}>
           Log out
         </Link>
