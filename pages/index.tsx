@@ -1,8 +1,13 @@
 import Head from "next/head"
-import { Inter } from "next/font/google"
+import { M_PLUS_1 } from "next/font/google"
 import styles from "@/styles/Home.module.css"
+import clsx from "clsx"
+import Link from "next/link"
 
-const inter = Inter({ subsets: ["latin"] })
+const mplus1 = M_PLUS_1({
+  weight: ["700"],
+  subsets: ["latin"],
+})
 
 export default function Home() {
   return (
@@ -13,9 +18,14 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={styles.main}>
-        <div className={styles.center}>
-          <h1 className={inter.className}>TuneStreet</h1>
+      <main className={clsx(styles.main, mplus1.className)}>
+        <div>
+          <h1>
+            <Link href="/lv">Browse by level</Link>
+          </h1>
+          <h1>
+            <Link href="/v">Browse by version</Link>
+          </h1>
         </div>
       </main>
     </>
