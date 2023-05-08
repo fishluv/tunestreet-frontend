@@ -17,7 +17,10 @@ export default function ChartPage(chartId: string) {
   return (
     <>
       <p>
-        <Link href={`/s/${chart.songId}`}>&lt;&lt; Back to song page</Link>
+        <Link href={`/s/${songId}`}>&lt;&lt; Song page</Link>
+      </p>
+      <p>
+        <Link href={`/lv/${level}`}>&lt;&lt; All {level}s</Link>
       </p>
       <Image
         src={bannerUrl}

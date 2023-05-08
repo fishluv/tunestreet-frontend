@@ -11,7 +11,7 @@ export default function LevelPage({ level }: { level: number }) {
   return (
     <>
       <p>
-        <Link href="/lv">&lt;&lt; Back to all levels</Link>
+        <Link href="/lv">&lt;&lt; All levels</Link>
       </p>
       <h2>Level {level}</h2>
       <table>
