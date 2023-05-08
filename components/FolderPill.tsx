@@ -120,7 +120,7 @@ export default class FolderPill extends React.Component<FolderPillProps> {
     )
 
     if (isLink) {
-      return <Link href={`/v/${songFolder}`}>{pill}</Link>
+      return <Link href={`/v/${String(parseInt(songFolder))}`}>{pill}</Link>
     } else {
       return pill
     }

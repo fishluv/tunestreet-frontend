@@ -26,7 +26,7 @@ export default function SongPage(songId: string) {
   return (
     <>
       <p>
-        <Link href={`/v/${songFolder}`}>
+        <Link href={`/v/${String(parseInt(songFolder))}`}>
           &lt;&lt; All from{" "}
           <FolderPill songFolder={normalChart.songFolder} style="normal" />
         </Link>

@@ -4,15 +4,20 @@ import { Database, parseVersionFolder } from "popn-db-js"
 import DiffLevelPill from "./DiffLevelPill"
 import { groupBy, sortBy } from "lodash"
 
-export default function VersionPage(version: string) {
-  let parsedVersion
+export default function VersionPage({
+  unpaddedVersion,
+}: {
+  unpaddedVersion: string
+}) {
+  let paddedVersion
   try {
-    parsedVersion = parseVersionFolder(version)
+    paddedVersion = parseVersionFolder(unpaddedVersion)
   } catch {
-    return <p>Couldnt find version {version}</p>
+    return <p>Couldnt find version {unpaddedVersion}</p>
   }
+
   // flat
-  const charts = Database.queryCharts(`ver=${parsedVersion}`)
+  const charts = Database.queryCharts(`ver=${paddedVersion}`)
   // group by song
   const bySongId = Object.entries(groupBy(charts, (c) => c.songId))
   // sort by title
