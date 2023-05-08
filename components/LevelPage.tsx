@@ -4,18 +4,14 @@ import { Database } from "popn-db-js"
 import DiffLevelPill from "./DiffLevelPill"
 import { sortBy } from "lodash"
 
-export default function LevelPage(level: number) {
-  if (!(level >= 1 && level <= 50)) {
-    return <p>Invalid level</p>
-  }
-
+export default function LevelPage({ level }: { level: number }) {
   const charts = Database.queryCharts(`lv=${level}`)
   const sortedByTitle = sortBy(charts, (c) => c.title)
 
   return (
     <>
       <p>
-        <Link href="/l">&lt;&lt; Back to all levels</Link>
+        <Link href="/lv">&lt;&lt; Back to all levels</Link>
       </p>
       <h2>Level {level}</h2>
       <table>

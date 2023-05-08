@@ -2,9 +2,7 @@ import LevelPage from "@/components/LevelPage"
 import { GetStaticPaths, GetStaticProps } from "next"
 import { LEVELS } from "popn-db-js"
 
-export default function LevelPageHandler({ level }: { level: number }) {
-  return LevelPage(level)
-}
+export default LevelPage
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const paths = LEVELS.map((level) => ({ params: { level: String(level) } }))
