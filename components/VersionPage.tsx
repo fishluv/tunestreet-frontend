@@ -25,11 +25,13 @@ export default function VersionPage(version: string) {
       </p>
       <table>
         <thead>
-          <th>song</th>
-          <th>easy</th>
-          <th>normal</th>
-          <th>hyper</th>
-          <th>ex</th>
+          <tr>
+            <th>song</th>
+            <th>easy</th>
+            <th>normal</th>
+            <th>hyper</th>
+            <th>ex</th>
+          </tr>
         </thead>
         <tbody>
           {sortedByTitle.map(([_, charts]) => {
