@@ -3,6 +3,7 @@ import Link from "next/link"
 import { Database } from "popn-db-js"
 import DiffLevelPill from "./DiffLevelPill"
 import { sortBy } from "lodash"
+import ChartLink from "./ChartLink"
 
 export default function LevelPage({ level }: { level: number }) {
   const charts = Database.queryCharts(`lv=${level}`)
@@ -23,7 +24,7 @@ export default function LevelPage({ level }: { level: number }) {
             return (
               <tr key={songId}>
                 <td>
-                  <Link href={`/s/${songId}/${difficulty}`}>
+                  <ChartLink songId={songId} difficulty={difficulty}>
                     <Image
                       src={bannerUrl}
                       alt={`banner for ${title}`}
@@ -32,12 +33,12 @@ export default function LevelPage({ level }: { level: number }) {
                     />
                     {title}
                     {genre !== title && ` / ${genre}`}
-                  </Link>
+                  </ChartLink>
                 </td>
                 <td>
-                  <Link href={`/s/${songId}/${difficulty}`}>
+                  <ChartLink songId={songId} difficulty={difficulty}>
                     <DiffLevelPill difficulty={difficulty} level={level} />
-                  </Link>
+                  </ChartLink>
                 </td>
               </tr>
             )

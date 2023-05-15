@@ -3,6 +3,8 @@ import Link from "next/link"
 import { Database, parseVersionFolder } from "popn-db-js"
 import DiffLevelPill from "./DiffLevelPill"
 import { groupBy, sortBy } from "lodash"
+import SongLink from "./SongLink"
+import ChartLink from "./ChartLink"
 
 export default function VersionPage({
   unpaddedVersion,
@@ -51,7 +53,7 @@ export default function VersionPage({
             return (
               <tr key={songId}>
                 <td>
-                  <Link href={`/s/${songId}`}>
+                  <SongLink songId={songId}>
                     <Image
                       src={bannerUrl}
                       alt={`banner for ${title}`}
@@ -60,34 +62,34 @@ export default function VersionPage({
                     />
                     {title}
                     {genre !== title && ` / ${genre}`}
-                  </Link>
+                  </SongLink>
                 </td>
                 <td>
                   {easy && (
-                    <Link href={`/s/${songId}/e`}>
+                    <ChartLink songId={songId} difficulty="e">
                       <DiffLevelPill difficulty="e" level={easy.level} />
-                    </Link>
+                    </ChartLink>
                   )}
                 </td>
                 <td>
                   {normal && (
-                    <Link href={`/s/${songId}/n`}>
+                    <ChartLink songId={songId} difficulty="n">
                       <DiffLevelPill difficulty="n" level={normal.level} />
-                    </Link>
+                    </ChartLink>
                   )}
                 </td>
                 <td>
                   {hyper && (
-                    <Link href={`/s/${songId}/h`}>
+                    <ChartLink songId={songId} difficulty="h">
                       <DiffLevelPill difficulty="h" level={hyper.level} />
-                    </Link>
+                    </ChartLink>
                   )}
                 </td>
                 <td>
                   {ex && (
-                    <Link href={`/s/${songId}/ex`}>
+                    <ChartLink songId={songId} difficulty="ex">
                       <DiffLevelPill difficulty="ex" level={ex.level} />
-                    </Link>
+                    </ChartLink>
                   )}
                 </td>
               </tr>

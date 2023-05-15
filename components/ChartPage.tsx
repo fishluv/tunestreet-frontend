@@ -3,6 +3,7 @@ import Link from "next/link"
 import { Database } from "popn-db-js"
 import DiffLevelPill from "./DiffLevelPill"
 import EntityRatings from "./EntityRatings"
+import SongLink from "./SongLink"
 
 export default function ChartPage(chartId: string) {
   const [chart] = Database.findCharts(chartId)
@@ -17,7 +18,7 @@ export default function ChartPage(chartId: string) {
   return (
     <>
       <p>
-        <Link href={`/s/${songId}`}>&lt;&lt; Song page</Link>
+        <SongLink songId={songId}>&lt;&lt; Song page</SongLink>
       </p>
       <p>
         <Link href={`/lv/${level}`}>&lt;&lt; All {level}s</Link>
