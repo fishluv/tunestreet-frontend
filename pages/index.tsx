@@ -1,13 +1,8 @@
 import Head from "next/head"
-import { M_PLUS_1 } from "next/font/google"
 import styles from "@/styles/Home.module.css"
 import clsx from "clsx"
 import Link from "next/link"
-
-const mplus1 = M_PLUS_1({
-  weight: ["700"],
-  subsets: ["latin"],
-})
+import { pillFont } from "@/components/fonts"
 
 export default function Home() {
   return (
@@ -18,7 +13,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={clsx(styles.main, mplus1.className)}>
+      <main className={clsx(styles.main, pillFont.className)}>
         <div>
           <h1>
             <Link href="/lv">Browse by level</Link>

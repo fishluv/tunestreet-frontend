@@ -1,11 +1,6 @@
 import clsx from "clsx"
-import { M_PLUS_1 } from "next/font/google"
 import styles from "./DiffLevelPill.module.scss"
-
-const mplus1 = M_PLUS_1({
-  weight: ["700"],
-  subsets: ["latin"],
-})
+import { pillFont } from "./fonts"
 
 export default function DiffLevelPill({
   difficulty,
@@ -15,7 +10,7 @@ export default function DiffLevelPill({
   level: number
 }) {
   const className = clsx(
-    mplus1.className,
+    pillFont.className,
     styles.DiffLevelPill,
     styles[difficulty],
   )

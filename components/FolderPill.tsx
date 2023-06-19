@@ -1,14 +1,9 @@
 import clsx from "clsx"
-import { M_PLUS_1 } from "next/font/google"
 import { VersionFolder } from "popn-db-js"
 import React from "react"
 import styles from "./FolderPill.module.scss"
 import Link from "next/link"
-
-const mplus1 = M_PLUS_1({
-  weight: ["700"],
-  subsets: ["latin"],
-})
+import { pillFont } from "./fonts"
 
 export type FolderPillStyle = "normal" | "compact"
 
@@ -116,7 +111,7 @@ export default class FolderPill extends React.Component<FolderPillProps> {
       {
         [styles.compact]: style === "compact",
       },
-      mplus1.className,
+      pillFont.className,
     )
 
     const pill = (
