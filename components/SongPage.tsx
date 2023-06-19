@@ -1,25 +1,23 @@
 import Image from "next/image"
 import Link from "next/link"
 import { useRouter } from "next/router"
-import { Database } from "popn-db-js"
+import { Unilab } from "popn-db-js"
 import DiffLevelPill from "./DiffLevelPill"
 import EntityRatings from "./EntityRatings"
 import styles from "./SongPage.module.scss"
 import FolderPill from "./FolderPill"
 
-export default function SongPage(songId: string) {
+export default function SongPage(songSlug: string) {
   const { asPath } = useRouter()
-  const [easyChart, normalChart, hyperChart, exChart] = Database.findCharts(
-    `${songId}e`,
-    `${songId}n`,
-    `${songId}h`,
-    `${songId}ex`,
-  )
+  const easyChart = Unilab.findChartBySongSlug(songSlug, "e")
+  const normalChart = Unilab.findChartBySongSlug(songSlug, "n")
+  const hyperChart = Unilab.findChartBySongSlug(songSlug, "h")
+  const exChart = Unilab.findChartBySongSlug(songSlug, "ex")
   if (normalChart === null) {
-    return <p>Couldnt find song {songId}</p>
+    return <p>Couldnt find song</p>
   }
 
-  const { title, songFolder } = normalChart
+  const { title, songId, songFolder } = normalChart
   const paddedId = `000${songId}`.slice(-4)
   const bannerUrl = `https://popn-assets.surge.sh/kc_${paddedId}.png`
 

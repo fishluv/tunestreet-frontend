@@ -1,6 +1,6 @@
 import Image from "next/image"
 import Link from "next/link"
-import { Database, parseVersionFolder } from "popn-db-js"
+import { Unilab, parseVersionFolder } from "popn-db-js"
 import DiffLevelPill from "./DiffLevelPill"
 import { groupBy, sortBy } from "lodash"
 import SongLink from "./SongLink"
@@ -19,7 +19,7 @@ export default function VersionPage({
   }
 
   // flat
-  const charts = Database.queryCharts(`ver=${paddedVersion}`)
+  const charts = Unilab.queryCharts(`ver=${paddedVersion}`)
   // group by song
   const bySongId = Object.entries(groupBy(charts, (c) => c.songId))
   // sort by title
@@ -47,13 +47,13 @@ export default function VersionPage({
             const normal = byDiff.n?.[0]
             const hyper = byDiff.h?.[0]
             const ex = byDiff.ex?.[0]
-            const { songId, title, genre } = charts[0]
+            const { songId, songSlug, title, genre } = charts[0]
             const paddedId = `000${songId}`.slice(-4)
             const bannerUrl = `https://popn-assets.surge.sh/kc_${paddedId}.png`
             return (
               <tr key={songId}>
                 <td>
-                  <SongLink songId={songId}>
+                  <SongLink songSlug={songSlug}>
                     <Image
                       src={bannerUrl}
                       alt={`banner for ${title}`}
@@ -66,28 +66,28 @@ export default function VersionPage({
                 </td>
                 <td>
                   {easy && (
-                    <ChartLink songId={songId} difficulty="e">
+                    <ChartLink songSlug={songSlug} difficulty="e">
                       <DiffLevelPill difficulty="e" level={easy.level} />
                     </ChartLink>
                   )}
                 </td>
                 <td>
                   {normal && (
-                    <ChartLink songId={songId} difficulty="n">
+                    <ChartLink songSlug={songSlug} difficulty="n">
                       <DiffLevelPill difficulty="n" level={normal.level} />
                     </ChartLink>
                   )}
                 </td>
                 <td>
                   {hyper && (
-                    <ChartLink songId={songId} difficulty="h">
+                    <ChartLink songSlug={songSlug} difficulty="h">
                       <DiffLevelPill difficulty="h" level={hyper.level} />
                     </ChartLink>
                   )}
                 </td>
                 <td>
                   {ex && (
-                    <ChartLink songId={songId} difficulty="ex">
+                    <ChartLink songSlug={songSlug} difficulty="ex">
                       <DiffLevelPill difficulty="ex" level={ex.level} />
                     </ChartLink>
                   )}

@@ -1157,11 +1157,6 @@ has@^1.0.3:
   dependencies:
     function-bind "^1.1.1"
 
-hashids@^2.2.11:
-  version "2.2.11"
-  resolved "https://registry.yarnpkg.com/hashids/-/hashids-2.2.11.tgz#825d3197742f4326d01645f125e09c026eb76e8b"
-  integrity sha512-e1rAPT5Wa9vf/Dq1eq8LFw5VH2dtKxRf6k9bCw0GLwKL/SRnUphIcqwJWUZ1ki18cdj03nCrpdlJOcyHILQk8Q==
-
 ignore@^5.2.0:
   version "5.2.4"
   resolved "https://registry.yarnpkg.com/ignore/-/ignore-5.2.4.tgz#a291c0c6178ff1b960befe47fcdec301674a6324"
@@ -1711,12 +1706,10 @@ picomatch@^2.0.4, picomatch@^2.2.1, picomatch@^2.3.1:
   resolved "https://registry.yarnpkg.com/picomatch/-/picomatch-2.3.1.tgz#3ba3833733646d9d3e4995946c1365a67fb07a42"
   integrity sha512-JU3teHTNjmE2VCGFzuY8EXzCDVwEqB2a8fsIvwaStHhAWJEeVd1o1QD80CU6+ZdEXXSLbSsuLwJjkCBWqRQUVA==
 
-popn-db-js@^0.9.4:
-  version "0.9.4"
-  resolved "https://registry.yarnpkg.com/popn-db-js/-/popn-db-js-0.9.4.tgz#b4ac2a62cdb61d6792150cda5a23ed75b589e4ac"
-  integrity sha512-Mqft/UaG9ktfX0hf55BRVrk3Qp3qNVQREkrvWsyZbgBpKDO7Q59VhPLuvCXRTQUGOgoOWlZTmgQC9u8QUOkZ7A==
-  dependencies:
-    sql.js "^1.8.0"
+popn-db-js@^0.10.2:
+  version "0.10.2"
+  resolved "https://registry.yarnpkg.com/popn-db-js/-/popn-db-js-0.10.2.tgz#3e453563f433124ac6c93e2c445c3593753dfaa5"
+  integrity sha512-hC596LmJ0a5La+xMsU+bXtvWpQXczrqd4aDeDxOhElfthx4ju+O/ZE0x267RVtuCVJe0Gqcttcf3BgKgtq+e6g==
 
 postcss@8.4.14:
   version "8.4.14"
@@ -1911,11 +1904,6 @@ slash@^4.0.0:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/source-map-js/-/source-map-js-1.0.2.tgz#adbc361d9c62df380125e7f161f71c826f1e490c"
   integrity sha512-R0XvVJ9WusLiqTCEiGCmICCMplcCkIwwR11mOSD9CR5u+IXYdiseeEuXCVAjS54zqwkLcPNnmU4OeJ6tUrWhDw==
-
-sql.js@^1.8.0:
-  version "1.8.0"
-  resolved "https://registry.yarnpkg.com/sql.js/-/sql.js-1.8.0.tgz#cb45d957e17a2239662fe2f614c9b678990867a6"
-  integrity sha512-3HD8pSkZL+5YvYUI8nlvNILs61ALqq34xgmF+BHpqxe68yZIJ1H+sIVIODvni25+CcxHUxDyrTJUL0lE/m7afw==
 
 stop-iteration-iterator@^1.0.0:
   version "1.0.0"
